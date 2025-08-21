@@ -1,13 +1,12 @@
 import useFetchData from "@/hooks/useFetchData";
-import { ImageProps } from "@/interfaces";
 import React, { useEffect, useState, KeyboardEvent } from "react";
+import Image from "next/image";
 
 const Home: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
-  const [imageUrl, setImageUrl] = useState<string>("");
   const [selectedImage, setSelectedImage] = useState<string>("");
-  const { isLoading, responseData, generatedImages, fetchData } = useFetchData<
-    any,
+  const { isLoading, responseData, fetchData } = useFetchData<
+    { message: string },
     { prompt: string }
   >();
 
@@ -18,18 +17,13 @@ const Home: React.FC = () => {
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleGenerateImage();
     }
   };
 
-  const handleImageSelect = (url: string) => {
-    setSelectedImage(url);
-  };
-
   useEffect(() => {
     if (!isLoading && responseData?.message) {
-      setImageUrl(responseData.message);
       setSelectedImage(responseData.message);
     }
   }, [isLoading, responseData]);
@@ -45,7 +39,8 @@ const Home: React.FC = () => {
               AI Image Studio
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Transform your imagination into stunning visuals with the power of artificial intelligence
+              Transform your imagination into stunning visuals with the power of
+              artificial intelligence
             </p>
           </div>
         </div>
@@ -71,8 +66,18 @@ const Home: React.FC = () => {
                     disabled={isLoading}
                   />
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg
+                      className="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -80,7 +85,7 @@ const Home: React.FC = () => {
                   Press Enter or click Generate to create your image
                 </p>
               </div>
-              
+
               <button
                 onClick={handleGenerateImage}
                 disabled={isLoading || !prompt.trim()}
@@ -93,8 +98,18 @@ const Home: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center space-x-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
                     </svg>
                     <span>Generate Image</span>
                   </div>
@@ -113,24 +128,26 @@ const Home: React.FC = () => {
               </h2>
               <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
                 <div className="aspect-video relative">
-                  <img
+                  <Image
                     src={selectedImage}
                     alt="Featured generated image"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Latest Prompt</h3>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    Latest Prompt
+                  </h3>
                   <p className="text-gray-600 leading-relaxed">{prompt}</p>
                 </div>
               </div>
             </div>
           </div>
         )}
-
-
-    
       </div>
     </div>
   );
