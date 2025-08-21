@@ -1,8 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# AI Image Studio
+
+## Overview
+
+AI Image Studio is a Next.js application that allows users to generate stunning images based on text prompts using AI. The application features a modern, responsive UI with enhanced styling, animations, and improved user experience.
+
+## Features
+
+- **Image Generation**: Generate images by providing text prompts.
+- **Interactive Gallery**: View previously generated images in a responsive gallery.
+- **Featured Image Display**: Click on any image in the gallery to display it as a featured image.
+- **Enhanced UI/UX**: Modern design with smooth animations, gradient backgrounds, and custom scrollbars.
+- **Keyboard Support**: Generate images by pressing the Enter key.
+- **Input Validation**: Disable generate button when the prompt is empty.
+- **Loading States**: Visual feedback during image generation.
 
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -14,27 +28,25 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `pages/index.tsx`: The main application page with image generation and gallery.
+- `styles/globals.css`: Global styles, including custom utilities for line clamping and scrollbars.
+- `hooks/useFetchData.ts`: Custom hook for handling data fetching.
+- `interfaces/index.ts`: TypeScript interfaces for data structures.
+- `pages/api/generate-image.ts`: API route for image generation.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about Next.js, refer to the official documentation:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn-pages-router)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+For more details, check out the [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying).
